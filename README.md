@@ -2,6 +2,9 @@
 
 -Create reat app
 -Configured TailWindCSS
+-Header
+-Sign In
+-Sign Up
 
 # Feature
 -Login/Sign Up
