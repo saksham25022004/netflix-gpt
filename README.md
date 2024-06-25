@@ -3,8 +3,17 @@
 -Create reat app
 -Configured TailWindCSS
 -Header
+-Routing of App
 -Sign In
 -Sign Up
+-Foam Validation
+-UseRef Hook
+-FireBase Setup
+-Create Sign Up User Account
+-Implement sign in user Api
+-Create Redux store with userSlice
+-Implemented signout
+-Update Profile
 
 # Feature
 -Login/Sign Up
