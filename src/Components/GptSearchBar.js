@@ -22,6 +22,15 @@ const GptSearchBar = () => {
 
     }
 
+    const searchTvTmdb= async (movie)=>{
+        const data=await fetch("https://api.themoviedb.org/3/search/tv?query="+movie+"&include_adult=false&language=en-US&page=1", API_OPTIONS);
+
+        const json=await data.json();
+
+        return json.results;
+
+    }
+
     const handleGptSearchClick= async ()=>{
 
         /*const gptQuery="Act as a Movie Recommendation system and suggest some movies for the query"+ searchText.current.value +". only give me names of 5 movies, comma seperated like he example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya";
@@ -32,21 +41,27 @@ const GptSearchBar = () => {
         });
 
         console.log(gptResults.choices?.[0]?.message?.content);
-        */
-        const gptMovies= ["amar akbar", "chupke chupke", "andaz apna apna"];
+        
+        const gptMovies= ["Gadar", "Robot", "Avenger","Batman","John Wick"];
 
         const promiseArray= gptMovies.map(movie=>searchMovieTMDB(movie));
+        */
+        
+        const gptMovies=searchText.current.value;
 
-        const tmdbResults = await Promise.all(promiseArray);
+        const tmdbResults = await searchMovieTMDB(gptMovies);
 
-        console.log(tmdbResults);
+        const tmdbResults2= await searchTvTmdb(gptMovies);
 
-        dispatch(addGptMovieResult({movieNames: gptMovies, movieResults:tmdbResults}));
+        const combine=[...tmdbResults,...tmdbResults2];
+
+        dispatch(addGptMovieResult({movieNames: gptMovies, movieResults:combine}));
+
     };
 
   return (
-    <div className="pt-[10%] flex justify-center">
-        <form className="w-1/2 bg-black grid grid-cols-12" onClick={(e)=>e.preventDefault()}>
+    <div className="pt-[35%] md:pt-[10%] flex justify-center">
+        <form className="w-full md:w-1/2 bg-black grid grid-cols-12 bg-opacity-40" onClick={(e)=>e.preventDefault()}>
             <input 
                 ref={searchText}
                 type="text" 
@@ -66,4 +81,4 @@ const GptSearchBar = () => {
   )
 }
 
-export default GptSearchBar
+export default GptSearchBar;

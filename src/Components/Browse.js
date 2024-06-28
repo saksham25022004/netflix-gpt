@@ -5,6 +5,10 @@ import GptSearch from './GptSearch';
 import Header from './Header';
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
+import useTrendingMovies from '../hooks/useTrendingMovies.js';
+import useTvShows from '../hooks/useTvShows.js';
+import useTopTvShow from '../hooks/useTopTvShow.js';
+import usePopularShow from '../hooks/usePopularShow .js';
 
 const Browse = () => {
 
@@ -12,6 +16,10 @@ const Browse = () => {
 
   useNowPlayingMovies();
   usePopularMovies();
+  useTrendingMovies();
+  useTvShows();
+  useTopTvShow();
+  usePopularShow();
 
   return (
     <div>
