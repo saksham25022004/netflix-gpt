@@ -1,9 +1,21 @@
+import { useDispatch } from "react-redux";
 import { ING_CDN_URL } from "../utils/constants"
+import { addMovieId, toggleShowTime } from "../utils/movieSlice";
 
-const MovieCard = ({posterPath}) => {
+const MovieCard = ({movieid,posterPath}) => {
+
+  const dispatch=useDispatch();
+
+  const handleCardClick = () => {
+    dispatch(toggleShowTime());
+    dispatch(addMovieId(movieid));
+  };
+
   if(!posterPath) return null;
   return (
-    <div className="pr-2 m-2 w-36 cursor-pointer hover:scale-125 duration-300 ">
+    <div 
+      onClick={handleCardClick}
+      className="pr-2 m-2 w-36 cursor-pointer hover:scale-125 duration-300 ">
         <img 
             className="rounded-md "
             alt="Movie Card"

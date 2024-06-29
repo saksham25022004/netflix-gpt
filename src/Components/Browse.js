@@ -9,10 +9,14 @@ import useTrendingMovies from '../hooks/useTrendingMovies.js';
 import useTvShows from '../hooks/useTvShows.js';
 import useTopTvShow from '../hooks/useTopTvShow.js';
 import usePopularShow from '../hooks/usePopularShow .js';
+import Show from './Show.js';
+//import { Outlet } from 'react-router-dom';
 
 const Browse = () => {
 
   const showGptSearch =useSelector(store=>store.gpt.showGptSearch);
+
+  const showTime=useSelector(store=>store.movie.showTime);
 
   useNowPlayingMovies();
   usePopularMovies();
@@ -24,7 +28,7 @@ const Browse = () => {
   return (
     <div>
       <Header />
-      {
+      {/*
         showGptSearch ? (
           <GptSearch />
         ) : (
@@ -33,7 +37,16 @@ const Browse = () => {
             <SecondaryContainer />
           </>
         )
-      }
+      */}
+      {showGptSearch && <GptSearch />}
+      {showTime && <Show />}
+      {!showGptSearch && !showTime && (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
+      
     </div>
   )
 }

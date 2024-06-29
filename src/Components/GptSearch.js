@@ -7,12 +7,11 @@ const GptSearch = () => {
     <>
       <div className="fixed -z-10">
             <img
-                
                 src={BG_URL}
                 alt="logo"
             />
       </div>
-      <div className="">
+      <div className="bg-black sm:bg-none md:bg-transparent">
           <GptSearchBar />
           <GptMovieSuggestion />
       </div>
