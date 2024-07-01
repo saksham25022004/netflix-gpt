@@ -10,21 +10,34 @@ const Show = () => {
 
   useEffect(()=>{
 
-    const getMovieVideo=async()=>{
-      const data=await fetch('https://api.themoviedb.org/3/movie/'+movieId+'/videos?language=en-US', API_OPTIONS);
+    const getVideo=async(url)=>{
+      const data=await fetch(url, API_OPTIONS);
   
       const json= await data.json();
   
-      const filterData=json.results.filter(video=>video.type==="Trailer");
-  
-      const trailer=filterData.length ? filterData[0] : json.results[0];
+      if (json.results && json.results.length > 0) {
+        const filterData = json.results.filter((video) => video.type === "Trailer");
+        return filterData.length ? filterData[0] : json.results[0];
+      }
 
-      setTrailer(trailer);
+      return null;
   
     };
 
+    const getVideoDetails = async () => {
+      let trailer = await getVideo(
+        `https://api.themoviedb.org/3/movie/${movieId}/videos?language=en-US`
+      );
+      if (!trailer) {
+        trailer = await getVideo(
+          `https://api.themoviedb.org/3/tv/${movieId}/videos?language=en-US`
+        );
+      }
+      setTrailer(trailer);
+    };
+
     if (movieId) {
-      getMovieVideo();
+      getVideoDetails();
     }
 
   },[movieId]);

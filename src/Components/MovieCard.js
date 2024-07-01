@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { ING_CDN_URL } from "../utils/constants"
 import { addMovieId, toggleShowTime } from "../utils/movieSlice";
+import { toggleGptSearchView2 } from "../utils/gptSlice";
 
 const MovieCard = ({movieid,posterPath}) => {
 
@@ -8,6 +9,7 @@ const MovieCard = ({movieid,posterPath}) => {
 
   const handleCardClick = () => {
     dispatch(toggleShowTime());
+    dispatch(toggleGptSearchView2());
     dispatch(addMovieId(movieid));
   };
 

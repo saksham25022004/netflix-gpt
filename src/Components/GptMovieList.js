@@ -7,7 +7,7 @@ const GptMovieList = ({title, movies}) => {
         <div className="flex">
 
             <div className="flex flex-wrap">
-                {movies?.map(movie=> <MovieCard key={movie.id} posterPath={movie.poster_path}/>)}
+                {movies?.map(movie=> <MovieCard key={movie.id} movieid={movie.id} posterPath={movie.poster_path}/>)}
             </div>
 
         </div>

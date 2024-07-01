@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "netflixgpt-54cee"
-  }
+    "default": "netflixgpt-54cee",
+    "staging": "netflixgpt-54cee"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
